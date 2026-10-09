@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- version 1.6 -->
+<!-- version 1.7 -->
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -262,6 +262,53 @@
       font-size: 14px;
     }
 
+    .approach-disclosure {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .approach-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 26px 0;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .approach-summary::-webkit-details-marker { display: none; }
+    .approach-summary .section-heading { margin-bottom: 0; }
+    .approach-summary .section-intro { max-width: 650px; }
+
+    .approach-toggle {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      flex: 0 0 auto;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 50%;
+      color: var(--accent);
+      font-size: 24px;
+      line-height: 1;
+      transition: transform 180ms ease, background 180ms ease;
+    }
+
+    .approach-disclosure[open] .approach-toggle {
+      transform: rotate(45deg);
+      background: rgba(255, 121, 0, 0.08);
+    }
+
+    .approach-summary:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 5px;
+    }
+
+    .approach-disclosure .approach {
+      padding: 8px 0 34px;
+    }
+
     .approach {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -335,6 +382,9 @@
       .hero::after { top: 13%; right: -270px; width: 430px; }
       .section { padding: 65px 0; }
       .approach { grid-template-columns: 1fr; gap: 28px; }
+      .approach-summary { gap: 14px; }
+      .approach-summary h2 { font-size: clamp(28px, 7vw, 38px); }
+      .approach-toggle { width: 34px; height: 34px; }
       .contact-panel { align-items: flex-start; flex-direction: column; }
       .contact-actions { width: 100%; }
       .footer-inner { align-items: flex-start; flex-direction: column; }
@@ -398,13 +448,17 @@
     </section>
 
     <section class="section container" id="approach" aria-labelledby="approach-title">
-      <div class="section-heading">
-        <p class="section-kicker">02 / Принцип работы</p>
-        <h2 id="approach-title">Сначала продукт. Затем предложение.</h2>
-        <p class="section-intro">Мы не подменяем готовые результаты планами: информация о каждом продукте будет публиковаться по мере его фактической готовности.</p>
-      </div>
+      <details class="approach-disclosure">
+        <summary class="approach-summary">
+          <div class="section-heading">
+            <p class="section-kicker">02 / Принцип работы</p>
+            <h2 id="approach-title">Сначала продукт. Затем предложение.</h2>
+            <p class="section-intro">Мы не подменяем готовые результаты планами: информация о каждом продукте будет публиковаться по мере его фактической готовности.</p>
+          </div>
+          <span class="approach-toggle" aria-hidden="true">+</span>
+        </summary>
 
-      <div class="approach">
+        <div class="approach">
         <article class="approach-item">
           <span class="approach-number">01</span>
           <h3>Понятное назначение</h3>
@@ -415,7 +469,8 @@
           <h3>Прозрачные условия</h3>
           <p>Стоимость и условия приобретения будут указаны тогда, когда предложение будет готово к публикации.</p>
         </article>
-      </div>
+        </div>
+      </details>
     </section>
 
     <section class="section container" aria-labelledby="contact-title">
