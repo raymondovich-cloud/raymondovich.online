@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- version 1.7 -->
+<!-- version 1.8 -->
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -342,20 +342,6 @@
       font-size: 14px;
     }
 
-    .contact-panel {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 30px;
-      padding: clamp(28px, 5vw, 54px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.025);
-    }
-
-    .contact-panel h2 { max-width: 600px; margin-bottom: 12px; }
-    .contact-panel p { max-width: 590px; margin-bottom: 0; color: var(--muted); font-size: 14px; }
-    .contact-actions { display: flex; flex: 0 0 auto; flex-wrap: wrap; gap: 10px; }
 
     .site-footer { margin-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.08); }
 
@@ -385,8 +371,6 @@
       .approach-summary { gap: 14px; }
       .approach-summary h2 { font-size: clamp(28px, 7vw, 38px); }
       .approach-toggle { width: 34px; height: 34px; }
-      .contact-panel { align-items: flex-start; flex-direction: column; }
-      .contact-actions { width: 100%; }
       .footer-inner { align-items: flex-start; flex-direction: column; }
     }
 
@@ -397,7 +381,6 @@
       .nav .nav-cta { padding: 7px 10px; }
       .hero { padding-top: 85px; }
       h1 { font-size: clamp(40px, 12vw, 52px); }
-      .actions, .contact-actions { align-items: stretch; flex-direction: column; }
       .button { width: 100%; }
       .catalog-panel { grid-template-columns: 1fr; gap: 18px; }
     }
@@ -473,19 +456,6 @@
       </details>
     </section>
 
-    <section class="section container" aria-labelledby="contact-title">
-      <div class="contact-panel">
-        <div>
-          <p class="section-kicker">03 / На связи</p>
-          <h2 id="contact-title">Следите за развитием RAYMONDOVICH.</h2>
-          <p>Посетите основной сайт, чтобы узнать об экосистеме и проектах, или переходите в Telegram за обновлениями.</p>
-        </div>
-        <div class="contact-actions">
-          <a class="button button-primary" href="https://raymondovich.ru/">RAYMONDOVICH.RU <span aria-hidden="true">↗</span></a>
-          <a class="button button-secondary" href="https://t.me/BillionsMone" target="_blank" rel="noopener noreferrer">Telegram <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-    </section>
   </main>
 
   <footer class="site-footer">
