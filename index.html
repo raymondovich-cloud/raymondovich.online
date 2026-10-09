@@ -1,177 +1,447 @@
 <!DOCTYPE html>
-<!-- version 1.5 -->
+<!-- version 1.6 -->
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="RAYMONDOVICH — проекты и продукты.">
-  <title>RAYMONDOVICH</title>
+  <meta name="theme-color" content="#080706">
+  <meta name="description" content="RAYMONDOVICH.ONLINE — коммерческая площадка цифровых продуктов. Каталог готовится к запуску.">
+  <title>RAYMONDOVICH.ONLINE — цифровые продукты</title>
   <style>
     :root {
       color-scheme: dark;
-      --text: #ffffff;
+      --bg: #080706;
+      --surface: rgba(255, 255, 255, 0.035);
+      --text: #f7f5f2;
+      --muted: #aaa39b;
+      --accent: #ff7900;
+      --line: rgba(255, 121, 0, 0.28);
+      --content: 1120px;
     }
 
-    * {
-      box-sizing: border-box;
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 92px;
+      background: var(--bg);
     }
 
-    html,
     body {
-      width: 100%;
-      min-height: 100%;
+      min-width: 320px;
       margin: 0;
-    }
-
-    body {
-      min-height: 100vh;
-      overflow: hidden;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--text);
       background:
-        radial-gradient(ellipse 85% 48% at 100% 100%, rgba(255, 106, 0, 0.58), transparent 72%),
-        radial-gradient(ellipse 72% 42% at 0% 0%, rgba(255, 106, 0, 0.18), transparent 70%),
-        linear-gradient(160deg, #030303 0%, #0b0705 48%, #170a03 76%, #050505 100%);
-      background-attachment: fixed;
+        radial-gradient(ellipse 75% 35% at 95% 0%, rgba(255, 106, 0, 0.13), transparent 70%),
+        radial-gradient(ellipse 65% 28% at 0% 40%, rgba(255, 106, 0, 0.055), transparent 75%),
+        var(--bg);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
 
+    a { color: inherit; }
+
     .site-header {
-      position: fixed;
-      inset: 0 0 auto 0;
+      position: sticky;
+      top: 0;
       z-index: 10;
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      padding: 28px 36px;
+      align-items: center;
+      gap: 20px;
+      padding: 17px max(24px, calc((100vw - var(--content)) / 2));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+      background: rgba(8, 7, 6, 0.86);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
     }
 
-    .project-link {
+    .wordmark {
+      flex: 0 0 auto;
       color: var(--text);
       font-size: 13px;
-      font-weight: 600;
+      font-weight: 750;
       letter-spacing: 0.16em;
-      line-height: 1;
-      text-align: center;
-      text-transform: uppercase;
       text-decoration: none;
-      background: rgba(0, 0, 0, 0.16);
-      border: 1px solid rgba(255, 106, 0, 0.62);
-      border-radius: 999px;
-      padding: 10px 16px;
-      cursor: pointer;
-      opacity: 0.92;
-      transition: opacity 180ms ease, transform 180ms ease;
     }
 
-    .project-link:hover,
-    .project-link:focus-visible {
-      opacity: 1;
-      transform: translateY(-1px);
-      outline: none;
-    }
-
-    .brand {
-      display: grid;
-      min-height: 100vh;
-      place-items: center;
-      padding: 80px 24px;
-    }
-
-    .site-footer {
-      position: fixed;
-      inset: auto 0 28px 0;
-      z-index: 10;
+    .nav {
       display: flex;
-      justify-content: center;
-      padding: 0 20px;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 22px;
     }
 
-    .site-footer-link {
-      color: var(--text);
-      font-size: 10px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
+    .nav a {
+      color: var(--muted);
+      font-size: 12px;
       text-decoration: none;
-      opacity: 0.62;
-      transition: opacity 180ms ease;
+      transition: color 160ms ease;
     }
 
-    .site-footer-link:hover,
-    .site-footer-link:focus-visible {
-      opacity: 1;
-      outline: none;
+    .nav a:hover, .nav a:focus-visible { color: var(--text); }
+
+    .nav .nav-cta {
+      padding: 8px 13px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--text);
     }
 
-    .brand-title {
-      margin: 0;
-      width: 100%;
-      text-align: center;
-      font-size: clamp(38px, 8vw, 128px);
-      font-weight: 700;
-      letter-spacing: -0.055em;
-      line-height: 0.9;
+    .container {
+      width: min(var(--content), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .hero {
+      position: relative;
+      display: flex;
+      min-height: min(700px, calc(100svh - 64px));
+      align-items: center;
+      padding: 100px 0 115px;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      position: absolute;
+      top: 14%;
+      right: -150px;
+      width: min(48vw, 560px);
+      aspect-ratio: 1;
+      border: 1px solid rgba(255, 121, 0, 0.14);
+      border-radius: 50%;
+      box-shadow: 0 0 0 48px rgba(255, 121, 0, 0.018), 0 0 0 96px rgba(255, 121, 0, 0.014);
+      content: "";
+      pointer-events: none;
+    }
+
+    .hero-content { position: relative; z-index: 1; max-width: 820px; }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin: 0 0 25px;
+      color: var(--accent);
+      font-size: 11px;
+      font-weight: 650;
+      letter-spacing: 0.19em;
       text-transform: uppercase;
-      text-shadow: 0 12px 60px rgba(0, 0, 0, 0.32);
     }
 
-    @media (max-width: 600px) {
-      .site-header {
-        padding: max(24px, env(safe-area-inset-top)) 20px 24px;
-      }
+    .eyebrow::before {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(255, 121, 0, 0.65);
+      content: "";
+    }
 
-      .project-link {
-        max-width: 42%;
-        font-size: 10px;
-        letter-spacing: 0.09em;
-        line-height: 1.25;
-      }
+    h1, h2, h3, p { margin-top: 0; }
 
-      .site-footer {
-        inset: auto 0 max(20px, env(safe-area-inset-bottom)) 0;
-      }
+    h1 {
+      max-width: 850px;
+      margin-bottom: 26px;
+      font-size: clamp(43px, 7.2vw, 88px);
+      font-weight: 680;
+      letter-spacing: -0.065em;
+      line-height: 0.99;
+    }
 
-      .brand {
-        padding: 72px 20px;
-      }
+    h1 span {
+      color: transparent;
+      background: linear-gradient(100deg, #fff0df 0%, #ff9b43 58%, #ff6900 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+    }
 
-      .brand-title {
-        font-size: clamp(34px, 11vw, 64px);
-      }
+    .hero-copy {
+      max-width: 610px;
+      margin-bottom: 34px;
+      color: var(--muted);
+      font-size: clamp(16px, 2vw, 19px);
+      line-height: 1.75;
+    }
 
-      body {
-        background:
-          radial-gradient(ellipse 125% 38% at 100% 100%, rgba(255, 106, 0, 0.62), transparent 72%),
-          radial-gradient(ellipse 110% 32% at 0% 0%, rgba(255, 106, 0, 0.16), transparent 70%),
-          linear-gradient(165deg, #030303 0%, #090605 52%, #180a03 82%, #050505 100%);
-      }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .button {
+      display: inline-flex;
+      min-height: 48px;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      color: var(--text);
+      font-size: 13px;
+      font-weight: 650;
+      text-decoration: none;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .button:hover, .button:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(255, 121, 0, 0.7);
+    }
+
+    .button-primary {
+      border-color: var(--accent);
+      background: linear-gradient(110deg, #ff8a19, #ff6900);
+      color: #170b02;
+    }
+
+    .button-primary:hover, .button-primary:focus-visible { background: #ffa044; }
+    .button-secondary { background: rgba(255, 255, 255, 0.025); }
+
+    .section { padding: 84px 0; }
+
+    .section-heading { margin-bottom: 30px; }
+
+    .section-kicker {
+      margin-bottom: 12px;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-size: clamp(30px, 4.2vw, 48px);
+      font-weight: 640;
+      letter-spacing: -0.045em;
+      line-height: 1.08;
+    }
+
+    .section-intro {
+      max-width: 650px;
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .catalog-panel {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      align-items: start;
+      gap: 24px;
+      padding: clamp(26px, 5vw, 48px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.045), rgba(255, 255, 255, 0.012));
+    }
+
+    .catalog-mark {
+      display: grid;
+      width: 54px;
+      height: 54px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--accent);
+      font-size: 22px;
+    }
+
+    .catalog-panel h3 {
+      margin-bottom: 10px;
+      font-size: clamp(22px, 3vw, 30px);
+      font-weight: 650;
+      letter-spacing: -0.035em;
+    }
+
+    .catalog-panel p {
+      max-width: 700px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .approach {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .approach-item {
+      padding: 26px 0 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .approach-number {
+      display: block;
+      margin-bottom: 18px;
+      color: var(--accent);
+      font-size: 11px;
+      letter-spacing: 0.15em;
+    }
+
+    .approach-item h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+      font-weight: 630;
+      letter-spacing: -0.025em;
+    }
+
+    .approach-item p {
+      max-width: 470px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact-panel {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      padding: clamp(28px, 5vw, 54px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .contact-panel h2 { max-width: 600px; margin-bottom: 12px; }
+    .contact-panel p { max-width: 590px; margin-bottom: 0; color: var(--muted); font-size: 14px; }
+    .contact-actions { display: flex; flex: 0 0 auto; flex-wrap: wrap; gap: 10px; }
+
+    .site-footer { margin-top: 40px; border-top: 1px solid rgba(255, 255, 255, 0.08); }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 25px 0;
+    }
+
+    .footer-brand { font-size: 11px; font-weight: 700; letter-spacing: 0.13em; }
+    .footer-note { margin: 0; color: var(--muted); font-size: 11px; }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 18px; }
+    .footer-links a { color: var(--muted); font-size: 11px; text-decoration: none; }
+    .footer-links a:hover { color: var(--text); }
+
+    @media (max-width: 760px) {
+      .site-header { padding: 15px 20px; }
+      .nav { gap: 13px; }
+      .nav a { font-size: 11px; }
+      .container { width: min(var(--content), calc(100% - 40px)); }
+      .hero { min-height: auto; padding: 105px 0 90px; }
+      .hero::after { top: 13%; right: -270px; width: 430px; }
+      .section { padding: 65px 0; }
+      .approach { grid-template-columns: 1fr; gap: 28px; }
+      .contact-panel { align-items: flex-start; flex-direction: column; }
+      .contact-actions { width: 100%; }
+      .footer-inner { align-items: flex-start; flex-direction: column; }
+    }
+
+    @media (max-width: 480px) {
+      .wordmark { font-size: 11px; letter-spacing: 0.1em; }
+      .nav { gap: 10px; }
+      .nav a { font-size: 10px; }
+      .nav .nav-cta { padding: 7px 10px; }
+      .hero { padding-top: 85px; }
+      h1 { font-size: clamp(40px, 12vw, 52px); }
+      .actions, .contact-actions { align-items: stretch; flex-direction: column; }
+      .button { width: 100%; }
+      .catalog-panel { grid-template-columns: 1fr; gap: 18px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: 0.01ms !important; }
     }
   </style>
 </head>
 <body>
   <header class="site-header">
-    <button class="project-link" type="button" onclick="showSoon()">
-      Действующие проекты
-    </button>
-
-    <a class="project-link" href="https://lifegame.site/">
-      Разрабатываемые проекты
-    </a>
+    <a class="wordmark" href="#top" aria-label="RAYMONDOVICH.ONLINE — главная">RAYMONDOVICH</a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="#catalog">Каталог</a>
+      <a href="#approach">Подход</a>
+      <a class="nav-cta" href="https://raymondovich.ru/">Основной сайт ↗</a>
+    </nav>
   </header>
 
-  <main class="brand">
-    <h1 class="brand-title">RAYMONDOVICH</h1>
+  <main id="top">
+    <section class="hero container" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="eyebrow">RAYMONDOVICH / ONLINE</p>
+        <h1 id="hero-title">Цифровые продукты.<br><span>Скоро здесь.</span></h1>
+        <p class="hero-copy">Коммерческая площадка экосистемы RAYMONDOVICH. Здесь будут представлены цифровые продукты, их возможности и условия приобретения. Каталог появится по мере готовности продуктов к запуску.</p>
+        <div class="actions">
+          <a class="button button-primary" href="https://raymondovich.ru/">Основной сайт <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary" href="https://t.me/BillionsMone" target="_blank" rel="noopener noreferrer">Telegram <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="catalog" aria-labelledby="catalog-title">
+      <div class="section-heading">
+        <p class="section-kicker">01 / Каталог</p>
+        <h2 id="catalog-title">Пространство для будущих продуктов.</h2>
+        <p class="section-intro">Мы готовим площадку, на которой каждый продукт получит собственное описание, понятное назначение и прозрачные условия использования.</p>
+      </div>
+
+      <div class="catalog-panel">
+        <div class="catalog-mark" aria-hidden="true">↗</div>
+        <div>
+          <h3>Каталог пока формируется</h3>
+          <p>Новые предложения будут появляться здесь по мере готовности. Сейчас на площадке нет продуктов, доступных для покупки.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section container" id="approach" aria-labelledby="approach-title">
+      <div class="section-heading">
+        <p class="section-kicker">02 / Принцип работы</p>
+        <h2 id="approach-title">Сначала продукт. Затем предложение.</h2>
+        <p class="section-intro">Мы не подменяем готовые результаты планами: информация о каждом продукте будет публиковаться по мере его фактической готовности.</p>
+      </div>
+
+      <div class="approach">
+        <article class="approach-item">
+          <span class="approach-number">01</span>
+          <h3>Понятное назначение</h3>
+          <p>Описание задачи, для которой создан продукт, и того, кому он может быть полезен.</p>
+        </article>
+        <article class="approach-item">
+          <span class="approach-number">02</span>
+          <h3>Прозрачные условия</h3>
+          <p>Стоимость и условия приобретения будут указаны тогда, когда предложение будет готово к публикации.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section container" aria-labelledby="contact-title">
+      <div class="contact-panel">
+        <div>
+          <p class="section-kicker">03 / На связи</p>
+          <h2 id="contact-title">Следите за развитием RAYMONDOVICH.</h2>
+          <p>Посетите основной сайт, чтобы узнать об экосистеме и проектах, или переходите в Telegram за обновлениями.</p>
+        </div>
+        <div class="contact-actions">
+          <a class="button button-primary" href="https://raymondovich.ru/">RAYMONDOVICH.RU <span aria-hidden="true">↗</span></a>
+          <a class="button button-secondary" href="https://t.me/BillionsMone" target="_blank" rel="noopener noreferrer">Telegram <span aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
-    <a class="site-footer-link" href="https://t.me/BillionsMone" target="_blank" rel="noopener noreferrer">
-      Developed by Raymondovich
-    </a>
+    <div class="container footer-inner">
+      <span class="footer-brand">RAYMONDOVICH</span>
+      <p class="footer-note">Независимая разработка цифровых продуктов.</p>
+      <div class="footer-links">
+        <a href="https://raymondovich.ru/">Основной сайт</a>
+        <a href="https://t.me/BillionsMone" target="_blank" rel="noopener noreferrer">Telegram</a>
+      </div>
+    </div>
   </footer>
-
-  <script>
-    function showSoon() {
-      alert("Скоро");
-    }
-  </script>
 </body>
 </html>
